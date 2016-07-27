@@ -4,12 +4,22 @@ import {
   EditorState,
   RichUtils,
   AtomicBlockUtils,
-  Entity
+  Entity,
+  Modifier
 } from 'draft-js';
 
 import styles from './styles.styl';
 
 const DEMO_IMAGE = 'http://www.mohigantimes.org/wp-content/uploads/2015/04/the-office-key-art-season-8-1.jpg';
+
+function getEntityType(contentBlock) {
+  if (contentBlock.getType() === 'atomic') {
+    const entity = Entity.get(contentBlock.getEntityAt(0));
+    return entity.getType();
+  }
+
+  return undefined;
+}
 
 export default class Editor extends Component {
   constructor(props) {
@@ -59,11 +69,10 @@ export default class Editor extends Component {
   }
 
   blockStyleRenderer = (contentBlock) => {
-    const type = contentBlock.getType();
-    console.log('blockStyleRenderer type', type);
+    const type = getEntityType(contentBlock);
 
-    if (type === 'blockquote') {
-      return 'superFancyBlockquote';
+    if (type === 'image') {
+      return styles.imageFigure;
     }
   }
 
@@ -94,13 +103,29 @@ export default class Editor extends Component {
 }
 
 
-const Media = (props) => {
-  console.log('Media props', props);
-  const entity = Entity.get(props.block.getEntityAt(0));
-  const { src } = entity.getData();
-  const type = entity.getType();
+class Media extends Component {
 
-  console.log('rendering Media with type', type, 'and source', src);
+  state = {
+    cycle: [
+      'NONE',
+      'FLOAT-LEFT',
+      'FLOAT-RIGHT',
+    ]
+  }
 
-  return (<img className={styles.image} src={src} />)
+  handleClick = (ev) => {
+    const cycle = [...this.state.cycle];
+    cycle.unshift(cycle.pop());
+    const currentAlignment = cycle[0];
+    console.log(currentAlignment);
+    this.setState({ cycle });
+  }
+
+  render() {
+    const entity = Entity.get(this.props.block.getEntityAt(0));
+    const { src } = entity.getData();
+    const type = entity.getType();
+
+    return (<img onClick={this.handleClick} className={styles.image} src={src} />);
+  }
 }
