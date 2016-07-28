@@ -36,3 +36,47 @@ body {
   font-style: normal;
   font-stretch: normal;
 }
+
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('./fonts/AtlasGrotesk-Black-Reduced.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+
+
+
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('./fonts/AtlasGrotesk-RegularItalic-Reduced.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('./fonts/AtlasGrotesk-LightItalic-Reduced.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('./fonts/AtlasGrotesk-BoldItalic-Reduced.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Atlas Grotesk Web';
+  src: url('./fonts/AtlasGrotesk-BlackItalic-Reduced.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-stretch: normal;
+}

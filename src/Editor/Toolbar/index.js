@@ -49,7 +49,7 @@ export default class Toolbar extends Component {
     this.setState({
       style: {
         display: 'flex',
-        top: window.scrollY + (rect.top - 75) - 350,
+        top: window.scrollY + (rect.top - 65) - 350,
         left: leftOffset + rect.left,
       }
     });

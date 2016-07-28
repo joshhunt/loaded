@@ -40,7 +40,7 @@ export default class Header extends Component {
 
     const files = ev.target.files || ev.dataTransfer.files;
     const file = files[0];
-    const blobUrl = URL.createObjectURL(file)
+    const blobUrl = URL.createObjectURL(file);
     this.setState({
       image: blobUrl,
     });
@@ -93,12 +93,11 @@ export default class Header extends Component {
           </div>
         </div>
 
-        {
-          this.state.isDragging && (
-          <div className={styles.isDragging}  >
+        <div className={cx(styles.dropMessage, {[styles.isDragging]: this.state.isDragging})}  >
+          <div className={styles.dropMessageInner}>
             Drop cover image
           </div>
-        )}
+        </div>
       </div>
     );
   }

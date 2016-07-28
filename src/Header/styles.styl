@@ -31,33 +31,49 @@
   z-index: 2
   background: rgba(#0E151B, .5)
 
-.isDragging
+.dropMessage
   position: absolute
   z-index: 999
-  background: rgba(#0E151B, .75)
+  background: rgba(#F6F6F6, .75)
   top: 0
   left: 0
   right: 0
   bottom: 0
-  color: #F6F6F6
+  color: #0E151B
+  font-weight: 900
+  font-size: 4em
+  pointer-events: none
+  transition: 150ms ease-in-out
+  opacity: 0
+
+.dropMessageInner
+  border: 15px dashed #0E151B
+  border-radius: 30px
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  margin: 30px
   display: flex
   align-items: center
   justify-content: center
-  font-weight: bold
-  font-size: 3em
-  pointer-events: none
+
+.isDragging
+  opacity: 1
 
 .editor
-  width: 50%
+  width: 100%
+  max-width: 800px
   font-size: 2em
   text-align: center
   color: #F6F6F6
   font-weight: bold
 
-:global
-  .public-DraftEditorPlaceholder-root
-    position: absolute
-    left: 50%
-    transform: translateX(-50%)
-    opacity: .5
-    pointer-events: none
+  :global
+    .public-DraftEditorPlaceholder-root
+      position: absolute
+      left: 50%
+      transform: translateX(-50%)
+      opacity: .5
+      pointer-events: none

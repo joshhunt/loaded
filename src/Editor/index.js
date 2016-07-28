@@ -43,15 +43,23 @@ export default class Editor extends Component {
     return false;
   };
 
-  handleImage = () => {
+  handleImage = (imageUrl) => {
     const { editorState } = this.state;
     const entityKey = Entity.create('image', 'IMMUTABLE', {
-      src: DEMO_IMAGE,
+      src: imageUrl,
       alignment: 'NONE',
     });
 
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
     this.handleChange(newEditorState);
+  }
+
+  handleDroppedFiles = (selection, files) => {
+    console.log(selection.serialize(), files);
+
+    const file = files[0];
+    const blobUrl = URL.createObjectURL(file);
+    this.handleImage(blobUrl);
   }
 
   blockRenderer = (block) => {
@@ -92,9 +100,11 @@ export default class Editor extends Component {
         />
 
         <DraftEditor
+          placeholder="Just type..."
           blockStyleFn={this.blockStyleRenderer}
           blockRendererFn={this.blockRenderer}
           handleKeyCommand={this.onKeyCommand}
+          handleDroppedFiles={this.handleDroppedFiles}
           editorState={editorState}
           onChange={this.handleChange}
         />
