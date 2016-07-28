@@ -11,14 +11,17 @@
 
 .alignNone
   width: 100%
+  padding: 0 0 15px 0
 
 .alignLeft
   width: 50%
   float: left
+  padding: 0 15px 15px 0
 
 .alignRight
   width: 50%
   float: right
+  padding: 0 0 15px 15px
 
 .image
   height: auto
@@ -26,6 +29,7 @@
   position: relative
   z-index: 3
   transform: translate3d(0,0,0)
+  display: block
 
 .iconAlign
   height: 1.5em
@@ -34,15 +38,15 @@
 
 .iconAlignLeft
   composes: iconAlign
-  mask: url('../../svg/float-left.svg') top left / cover;
+  mask: url('../../svg/float-left.svg') top left / cover
 
 .iconAlignNone
   composes: iconAlign
   height: 1.1em
   width: 1.1em
   margin: .2em
-  mask: url('../../svg/float-none.svg') top left / cover;
+  mask: url('../../svg/float-none.svg') top left / cover
 
 .iconAlignRight
   composes: iconAlign
-  mask: url('../../svg/float-right.svg') top left / cover;
+  mask: url('../../svg/float-right.svg') top left / cover

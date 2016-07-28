@@ -34,10 +34,7 @@ export default class Toolbar extends Component {
     const selectionState = editorState.getSelection();
 
     if (selectionState.isCollapsed()) {
-      this.setState({
-        style: { display: 'none' }
-      });
-
+      this.setState({style: { display: 'none' }});
       return
     }
 

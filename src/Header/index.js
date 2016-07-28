@@ -23,9 +23,10 @@ export default class Header extends Component {
   componentDidMount() {
 
     window.addEventListener('scroll', () => {
-      // console.log(window.scrollY);
-      const scrollment = window.scrollY / 8;
-      console.log(Math.floor(scrollment));
+      const scrollY = window.scrollY;
+      if (scrollY > 350) { return };
+
+      const scrollment = scrollY / 8;
       this.setState({
         parallax: scrollment,
       });

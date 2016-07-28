@@ -70,10 +70,15 @@ export default class Editor extends Component {
   }
 
   blockStyleRenderer = (contentBlock) => {
+    const contentBlockType = contentBlock.getType();
     const type = getEntityType(contentBlock);
 
     if (type === 'image') {
-      return styles.imageFigure;
+      return styles.blockImage;
+    } else {
+      if (contentBlockType === 'unstyled') {
+        return styles.blockUnstyled;
+      }
     }
   }
 
