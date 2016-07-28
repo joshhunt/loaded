@@ -43,8 +43,13 @@ export default class Editor extends Component {
     return false;
   };
 
-  handleImage = (imageUrl) => {
-    const { editorState } = this.state;
+  handleImage = (imageUrl, selection) => {
+    let { editorState } = this.state;
+
+    if (selection) {
+      editorState = EditorState.forceSelection(editorState, selection);
+    }
+
     const entityKey = Entity.create('image', 'IMMUTABLE', {
       src: imageUrl,
       alignment: 'NONE',
@@ -59,7 +64,7 @@ export default class Editor extends Component {
 
     const file = files[0];
     const blobUrl = URL.createObjectURL(file);
-    this.handleImage(blobUrl);
+    this.handleImage(blobUrl, selection);
   }
 
   handleDrop = (...args) => {
