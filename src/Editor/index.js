@@ -5,9 +5,13 @@ import {
   RichUtils,
   AtomicBlockUtils,
   Entity,
-  Modifier
+  convertToRaw,
+  convertFromRaw,
 } from 'draft-js';
 
+
+import Image from './Image';
+import baseState from './exampleContentState';
 import styles from './styles.styl';
 
 const DEMO_IMAGE = 'http://www.mohigantimes.org/wp-content/uploads/2015/04/the-office-key-art-season-8-1.jpg';
@@ -24,7 +28,7 @@ function getEntityType(contentBlock) {
 export default class Editor extends Component {
   constructor(props) {
     super(props);
-    this.state = { editorState: EditorState.createEmpty() };
+    this.state = { editorState: EditorState.createWithContent(convertFromRaw(baseState)) };
   }
 
   handleChange = (editorState) => this.setState({editorState});
@@ -45,10 +49,18 @@ export default class Editor extends Component {
   handleUnderline = () => this.handleChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
   handleCode = () => this.handleChange(RichUtils.toggleInlineStyle(this.state.editorState, 'CODE'));
 
+  handleDump = () => {
+    const content = this.state.editorState.getCurrentContent();
+    const raw = convertToRaw(content);
+    console.log(raw);
+  }
+
   handleImage = () => {
-    const type = 'image';
     const { editorState } = this.state;
-    const entityKey = Entity.create(type, 'IMMUTABLE', { src: DEMO_IMAGE });
+    const entityKey = Entity.create('image', 'IMMUTABLE', {
+      src: DEMO_IMAGE,
+      alignment: 'NONE',
+    });
 
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
     this.handleChange(newEditorState);
@@ -57,10 +69,11 @@ export default class Editor extends Component {
   blockRenderer = (block) => {
     if (block.getType() === 'atomic') {
       return {
-        component: Media,
+        component: Image,
         editable: false,
         props: {
           editorState: this.state.editorState,
+          onChange: this.handleChange,
         }
       };
     }
@@ -86,11 +99,12 @@ export default class Editor extends Component {
           <button className={styles.button} onClick={this.handleUnderline}>Underline</button>
           <button className={styles.button} onClick={this.handleCode}>Code</button>
           <button className={styles.button} onClick={this.handleImage}>Image</button>
+          <button className={styles.button} onClick={this.handleDump}>Dump</button>
         </div>
 
         <DraftEditor
-          blockRendererFn={this.blockRenderer}
           blockStyleFn={this.blockStyleRenderer}
+          blockRendererFn={this.blockRenderer}
           handleKeyCommand={this.onKeyCommand}
           editorState={editorState}
           onChange={this.handleChange}
@@ -103,29 +117,3 @@ export default class Editor extends Component {
 }
 
 
-class Media extends Component {
-
-  state = {
-    cycle: [
-      'NONE',
-      'FLOAT-LEFT',
-      'FLOAT-RIGHT',
-    ]
-  }
-
-  handleClick = (ev) => {
-    const cycle = [...this.state.cycle];
-    cycle.unshift(cycle.pop());
-    const currentAlignment = cycle[0];
-    console.log(currentAlignment);
-    this.setState({ cycle });
-  }
-
-  render() {
-    const entity = Entity.get(this.props.block.getEntityAt(0));
-    const { src } = entity.getData();
-    const type = entity.getType();
-
-    return (<img onClick={this.handleClick} className={styles.image} src={src} />);
-  }
-}
