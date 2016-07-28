@@ -5,11 +5,10 @@ import {
   RichUtils,
   AtomicBlockUtils,
   Entity,
-  convertToRaw,
   convertFromRaw,
 } from 'draft-js';
 
-
+import Toolbar from './Toolbar';
 import Image from './Image';
 import baseState from './exampleContentState';
 import styles from './styles.styl';
@@ -43,17 +42,6 @@ export default class Editor extends Component {
 
     return false;
   };
-
-  handleBold = () => this.handleChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-  handleItalic = () => this.handleChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
-  handleUnderline = () => this.handleChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  handleCode = () => this.handleChange(RichUtils.toggleInlineStyle(this.state.editorState, 'CODE'));
-
-  handleDump = () => {
-    const content = this.state.editorState.getCurrentContent();
-    const raw = convertToRaw(content);
-    console.log(raw);
-  }
 
   handleImage = () => {
     const { editorState } = this.state;
@@ -93,14 +81,10 @@ export default class Editor extends Component {
     const { editorState } = this.state;
     return (
       <div className={styles.root}>
-        <div className={styles.toolbar}>
-          <button className={styles.button} onClick={this.handleBold}>Bold</button>
-          <button className={styles.button} onClick={this.handleItalic}>Italic</button>
-          <button className={styles.button} onClick={this.handleUnderline}>Underline</button>
-          <button className={styles.button} onClick={this.handleCode}>Code</button>
-          <button className={styles.button} onClick={this.handleImage}>Image</button>
-          <button className={styles.button} onClick={this.handleDump}>Dump</button>
-        </div>
+        <Toolbar
+          editorState={editorState}
+          onChange={this.handleChange}
+        />
 
         <DraftEditor
           blockStyleFn={this.blockStyleRenderer}

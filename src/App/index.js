@@ -6,10 +6,6 @@ class App extends Component {
   render() {
     return (
       <div className={styles.root}>
-        <div className={styles.header}>
-          <h2>Loaded</h2>
-        </div>
-
         <Editor />
       </div>
     );

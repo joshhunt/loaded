@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Entity, EditorState } from 'draft-js';
 import cx from 'classnames';
+import Tooltip from '../Tooltip';
 
 import styles from './styles.styl'
 
@@ -31,22 +32,23 @@ export default class Image extends Component {
 
     return (
       <div className={cx(styles.root, this.alignmentClass[alignment])}>
-        <div className={styles.controls}>
-          <button className={styles.button} onClick={this.handleAlignLeft}>
-            <div className={styles.iconAlignLeft} />
-          </button>
-          <button className={styles.button} onClick={this.handleAlignNone}>
-            <div className={styles.iconAlignNone} />
-          </button>
-          <button className={styles.button} onClick={this.handleAlignRight}>
-            <div className={styles.iconAlignRight} />
-          </button>
-        </div>
-
-        <img
-          src={src}
-          className={styles.image}
+        <Tooltip
+          className={styles.controls}
+          items={[
+            {
+              onClick: this.handleAlignLeft,
+              children: <div className={styles.iconAlignLeft} />
+            }, {
+              onClick: this.handleAlignNone,
+              children: <div className={styles.iconAlignNone} />
+            }, {
+              onClick: this.handleAlignRight,
+              children: <div className={styles.iconAlignRight} />
+            }
+          ]}
         />
+
+        <img src={src} className={styles.image} />
       </div>
     );
   }
