@@ -17,7 +17,7 @@ export default class Header extends Component {
       isDragging: false,
       parallax: 0,
     };
-    this.onChange = (editorState) => this.setState({editorState});
+    this.handleChange = (editorState) => this.setState({editorState});
   }
 
   componentDidMount() {
@@ -33,7 +33,7 @@ export default class Header extends Component {
     }, false);
   }
 
-  onDrop = (ev) => {
+  handleDrop = (ev) => {
     ev.preventDefault();
     window.dropEvent = ev;
     this.setState({ isDragging: false });
@@ -48,7 +48,7 @@ export default class Header extends Component {
     setTimeout(this.onBackdropLoad, 300);
   };
 
-  onDragEnter = (ev) => {
+  handleDragEnter = (ev) => {
     ev.stopPropagation();
     ev.preventDefault();
     if (!this.state.isDragging) {
@@ -56,24 +56,24 @@ export default class Header extends Component {
     }
   };
 
-  onBackdropLoad = () => {
-    this.setState({
-      displayBackdrop: true,
-    });
-  }
-
-  onDragLeave = (ev) => {
+  handleDragLeave = (ev) => {
     ev.stopPropagation();
     ev.preventDefault();
     this.setState({ isDragging: false });
   };
 
+  onBackdropLoad = () => {
+    this.setState({
+      displayBackdrop: true,
+    });
+  };
+
   render() {
     return (
       <div className={styles.root} ref='el'
-        onDrop={this.onDrop}
-        onDragOver={this.onDragEnter}
-        onDragLeave={this.onDragLeave}
+        onDrop={this.handleDrop}
+        onDragOver={this.handleDragEnter}
+        onDragLeave={this.handleDragLeave}
         style={{top: this.state.parallax * -1}}
       >
         <div
@@ -88,7 +88,7 @@ export default class Header extends Component {
             <DraftEditor
               placeholder="Every great story begins with a title..."
               editorState={this.state.editorState}
-              onChange={this.onChange}
+              onChange={this.handleChange}
             />
           </div>
         </div>
