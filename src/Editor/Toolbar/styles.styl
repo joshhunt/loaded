@@ -2,22 +2,29 @@
   margin-bottom: 20px
   display: flex
   position: absolute
+  top: -10000px
 
 .icon
-  height: 1.5em
-  width: 1.5em
+  height: 1.8em
+  width: 1.8em
   background: white
+  margin: 3px
+
+.smallIcon
+  composes: icon
+  height: 1.4em
+  width: 1.4em
 
 .iconBold
-  composes: icon
+  composes: smallIcon
   mask: url('../../svg/images/bold1.png') top left / cover
 
 .iconItalic
-  composes: icon
+  composes: smallIcon
   mask: url('../../svg/images/italic3.png') top left / cover
 
 .iconUnderline
-  composes: icon
+  composes: smallIcon
   mask: url('../../svg/images/underline3.png') top left / cover
 
 .iconH1

@@ -1,0 +1,63 @@
+.root
+  content: 'root'
+  position relative
+  padding: 0
+  background: #0E151B
+
+.backdrop
+  content: 'backdrop'
+  position absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 1
+  padding: 0
+  background-position: center
+  background-size: cover
+  opacity: 0
+  transition: opacity 250ms ease-in-out
+
+.displayBackdrop
+  opacity: 1
+
+.front
+  content: 'front'
+  height: 350px
+  display: flex
+  align-items: center
+  justify-content: center
+  position: relative
+  z-index: 2
+  background: rgba(#0E151B, .5)
+
+.isDragging
+  position: absolute
+  z-index: 999
+  background: rgba(#0E151B, .75)
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  color: #F6F6F6
+  display: flex
+  align-items: center
+  justify-content: center
+  font-weight: bold
+  font-size: 3em
+  pointer-events: none
+
+.editor
+  width: 50%
+  font-size: 2em
+  text-align: center
+  color: #F6F6F6
+  font-weight: bold
+
+:global
+  .public-DraftEditorPlaceholder-root
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    opacity: .5
+    pointer-events: none

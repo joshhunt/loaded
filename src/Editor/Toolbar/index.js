@@ -5,23 +5,6 @@ import { getVisibleSelectionRect, RichUtils, convertToRaw } from 'draft-js';
 import Tooltip from '../Tooltip';
 import styles from './styles.styl';
 
-window.getVisibleSelectionRect = getVisibleSelectionRect;
-
-const xxx = [
-  'iconbold1',
-  'iconh11',
-  'iconh21',
-  'iconh31',
-  'iconitalic3',
-  'iconunderline3',
-]
-
-const testIcons = xxx.map((iconName) => {
-  return {
-    children: <div className={styles[iconName]} />
-  }
-});
-
 export default class Toolbar extends Component {
 
   state = { style: {} };
@@ -69,7 +52,7 @@ export default class Toolbar extends Component {
     this.setState({
       style: {
         display: 'flex',
-        top: window.scrollY + (rect.top - 60),
+        top: window.scrollY + (rect.top - 75),
         left: leftOffset + rect.left,
       }
     });
@@ -80,7 +63,6 @@ export default class Toolbar extends Component {
       <Tooltip
         className={styles.root}
         style={this.state.style}
-        items={testIcons}
         items={[{
             onClick: this.handleH1,
             children: <div className={styles.iconH1} />,

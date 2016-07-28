@@ -12,16 +12,6 @@ export default class Tooltip extends Component {
             {item.children}
           </button>
         ))}
-
-        {/* <button className={styles.button} onClick={this.handleAlignLeft}>
-          <div className={styles.iconAlignLeft} />
-        </button>
-        <button className={styles.button} onClick={this.handleAlignNone}>
-          <div className={styles.iconAlignNone} />
-        </button>
-        <button className={styles.button} onClick={this.handleAlignRight}>
-          <div className={styles.iconAlignRight} />
-        </button> */}
       </div>
     );
   }
