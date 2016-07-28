@@ -62,6 +62,10 @@ export default class Editor extends Component {
     this.handleImage(blobUrl);
   }
 
+  handleDrop = (...args) => {
+    console.log(...args);
+  }
+
   blockRenderer = (block) => {
     if (block.getType() === 'atomic') {
       return {
@@ -105,6 +109,7 @@ export default class Editor extends Component {
           blockRendererFn={this.blockRenderer}
           handleKeyCommand={this.onKeyCommand}
           handleDroppedFiles={this.handleDroppedFiles}
+          handleDrop={this.handleDrop}
           editorState={editorState}
           onChange={this.handleChange}
         />
