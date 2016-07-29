@@ -60,12 +60,6 @@ export default class Toolbar extends Component {
         className={styles.root}
         style={this.state.style}
         items={[{
-            onClick: this.handleH1,
-            children: <div className={styles.iconH1} />,
-          },{
-            onClick: this.handleH2,
-            children: <div className={styles.iconH2} />,
-          },{
             onClick: this.handleBold,
             children: <div className={styles.iconBold} />
           }, {

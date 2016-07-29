@@ -1,0 +1,57 @@
+.root
+  content: 'hi'
+  position absolute
+  display: block
+  top: -9999px
+  left: -9999px
+  margin-left -40px
+
+.controls
+  opacity 0
+  top: -50px
+  width: 141px
+  transition: all 150ms ease-in-out
+
+  .root:hover &
+    opacity: 1
+
+.icon
+  height: 1.8em
+  width: 1.8em
+  background: white
+  margin: 3px
+
+.smallIcon
+  composes: icon
+  height: 1.4em
+  width: 1.4em
+
+.paragraph1
+  composes: smallIcon
+  mask: url('../../svg/images/paragraph1.png') top left / cover
+
+.paragraph2
+  composes: smallIcon
+  mask: url('../../svg/images/paragraph2.png') top left / cover
+
+.paragraph3
+  composes: smallIcon
+  mask: url('../../svg/images/paragraph3.png') top left / cover
+
+.paragraph4
+  composes: smallIcon
+  mask: url('../../svg/images/paragraph4.png') top left / cover
+
+.activeIcon
+  composes: smallIcon
+  background: #BCBEC1
+  mask: url('../../svg/images/paragraph3.png') top left / cover
+
+
+.iconH1
+  composes: smallIcon
+  mask: url('../../svg/images/h11.png') top left / cover
+
+.iconH2
+  composes: smallIcon
+  mask: url('../../svg/images/h21.png') top left / cover

@@ -9,6 +9,7 @@ import {
 } from 'draft-js';
 
 import Toolbar from './Toolbar';
+import GutterControls from './GutterControls';
 import Image from './Image';
 import baseState from './exampleContentState';
 import styles from './styles.styl';
@@ -105,8 +106,10 @@ export default class Editor extends Component {
       <div className={styles.root}>
         <Toolbar
           editorState={editorState}
-          onChange={this.handleChange}
-        />
+          onChange={this.handleChange} />
+        <GutterControls
+          editorState={editorState}
+          onChange={this.handleChange} />
 
         <DraftEditor
           placeholder="Just type..."
