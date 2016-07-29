@@ -18,7 +18,6 @@ export default class Toolbar extends Component {
   handleCode = () => this.toggleInlineStyle('CODE');
   handleH1 = () => this.toggleBlockType('header-one');
   handleH2 = () => this.toggleBlockType('header-two');
-  handleH3 = () => this.toggleBlockType('header-three');
 
   handleDump = () => {
     const content = this.props.editorState.getCurrentContent();
@@ -67,9 +66,6 @@ export default class Toolbar extends Component {
             onClick: this.handleH2,
             children: <div className={styles.iconH2} />,
           },{
-            onClick: this.handleH3,
-            children: <div className={styles.iconH3} />,
-          }, {
             onClick: this.handleBold,
             children: <div className={styles.iconBold} />
           }, {
