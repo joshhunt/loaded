@@ -9,7 +9,7 @@
 .controls
   opacity 0
   top: -50px
-  width: 141px
+  width: 188px
   transition: all 150ms ease-in-out
 
   .root:hover &
@@ -26,27 +26,39 @@
   height: 1.4em
   width: 1.4em
 
-.paragraph1
-  composes: smallIcon
-  mask: url('../../svg/images/paragraph1.png') top left / cover
-
-.paragraph2
-  composes: smallIcon
-  mask: url('../../svg/images/paragraph2.png') top left / cover
-
-.paragraph3
-  composes: smallIcon
-  mask: url('../../svg/images/paragraph3.png') top left / cover
-
-.paragraph4
-  composes: smallIcon
-  mask: url('../../svg/images/paragraph4.png') top left / cover
 
 .activeIcon
   composes: smallIcon
   background: #BCBEC1
   mask: url('../../svg/images/paragraph3.png') top left / cover
 
+.activeParagraph
+  composes: smallIcon
+  background: #BCBEC1
+  mask: url('../../svg/images/paragraph3.png') top left / cover
+
+.activeH1
+  composes: smallIcon
+  background: #BCBEC1
+  mask: url('../../svg/images/h11.png') top left / cover
+
+.activeH2
+  composes: smallIcon
+  background: #BCBEC1
+  mask: url('../../svg/images/h21.png') top left / cover
+
+.activeQuote
+  composes: smallIcon
+  background: #BCBEC1
+  mask: url('../../svg/images/QuoteRight_2.png') top left / cover
+
+
+
+
+
+.iconParagraph
+  composes: smallIcon
+  mask: url('../../svg/images/paragraph3.png') top left / cover
 
 .iconH1
   composes: smallIcon
@@ -55,3 +67,7 @@
 .iconH2
   composes: smallIcon
   mask: url('../../svg/images/h21.png') top left / cover
+
+.iconQuote
+  composes: smallIcon
+  mask: url('../../svg/images/QuoteRight_2.png') top left / cover

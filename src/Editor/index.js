@@ -96,6 +96,8 @@ export default class Editor extends Component {
     } else {
       if (contentBlockType === 'unstyled') {
         return styles.blockUnstyled;
+      } else if (contentBlockType === 'blockquote') {
+        return styles.blockBlockquote;
       }
     }
   }
